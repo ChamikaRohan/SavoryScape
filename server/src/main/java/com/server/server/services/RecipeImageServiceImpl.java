@@ -33,13 +33,8 @@ public class RecipeImageServiceImpl implements RecipeImageService{
     public byte[] getRecipeImage(String id) throws IOException {
         ObjectId fileId = new ObjectId(id);
         GridFSFile file = gridfstemplate.findOne(new Query(Criteria.where("_id").is(fileId)));
-        if (file != null) {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            gridfstemplate.getResource(file).getInputStream().transferTo(outputStream);
-            return outputStream.toByteArray();
-        } else {
-            throw new FileNotFoundException("File not found with ID: " + id);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        gridfstemplate.getResource(file).getInputStream().transferTo(outputStream);
+        return outputStream.toByteArray();
         }
-    }
-    
 }
