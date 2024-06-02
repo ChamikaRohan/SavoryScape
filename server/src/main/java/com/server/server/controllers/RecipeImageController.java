@@ -24,16 +24,16 @@ public class RecipeImageController {
     RecipeImageService recipeimgservice;
 
     @PostMapping("/createrecipeimg")
-    public String saverecipeimg(@RequestParam("file") MultipartFile file)
+    public ResponseEntity<String> saverecipeimg(@RequestParam("file") MultipartFile file)
         {
             try{
-                return recipeimgservice.storeRecipeImage(file);
-                // return "Recipe saved successfully!";
+                String id = recipeimgservice.storeRecipeImage(file);
+                return ResponseEntity.ok("Recipe image created sucessfully!");
             }
             catch(IOException e)
             {
-                e.printStackTrace(); // or log the exception
-                return "Error occurred while uploading image.";
+                e.printStackTrace();
+                return ResponseEntity.status(500).body("Recipe image cannot be created!");
             }
         }
         @GetMapping("/getrecipeimg")
@@ -41,12 +41,11 @@ public class RecipeImageController {
         {
             try {
                 byte[] imageBytes = recipeimgservice.getRecipeImage(fileId);
-
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.IMAGE_JPEG);
                 headers.setContentLength(imageBytes.length);
 
-                return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+                return new ResponseEntity<byte[]>(imageBytes, headers, HttpStatus.OK);
             } catch (IOException e) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
