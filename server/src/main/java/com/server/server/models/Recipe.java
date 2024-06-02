@@ -15,9 +15,8 @@ public class Recipe {
     private String recipe;
     private String imageId;
 
-
-    public Recipe() {
-    }
+    public Recipe()
+    {}
 
     public String getId() {
         return this.id;

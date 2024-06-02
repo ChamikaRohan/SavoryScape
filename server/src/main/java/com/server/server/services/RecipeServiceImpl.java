@@ -1,6 +1,7 @@
 package com.server.server.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,12 @@ public class RecipeServiceImpl implements RecipeService {
     public List<Recipe> getAllRecipes()
     {
         List<Recipe> recipe = recipeRepo.findAll();
+        return recipe;
+    }
+
+    public Optional<Recipe> getRecipe(String id)
+    {
+        Optional<Recipe> recipe = recipeRepo.findById(id);
         return recipe;
     }
 }
