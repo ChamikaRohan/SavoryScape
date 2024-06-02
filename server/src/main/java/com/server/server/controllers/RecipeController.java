@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +24,11 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
 
-    @PostMapping("/postrecipe")
-    public String saverecipe(Recipe recipe)
+    @PostMapping("/createrecipe")
+    public String saverecipe(@RequestBody Recipe recipe)
     {
         recipeService.saveRecipe(recipe);
         return "Recipe saved successfully!";
     }
+    
 }

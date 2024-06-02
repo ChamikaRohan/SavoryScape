@@ -9,12 +9,30 @@ public class Recipe {
     private String id;
     private String name;
     private String category;
+    private String style;
     private String description;
     private String ingrediants;
     private String recipe;
+    private String imageId;
 
 
     public Recipe() {
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getStyle() {
+        return this.style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
 
     public String getName() {
@@ -55,6 +73,15 @@ public class Recipe {
 
     public void setRecipe(String recipe) {
         this.recipe = recipe;
+    }
+
+
+    public String getImageId() {
+        return this.imageId;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
 }
