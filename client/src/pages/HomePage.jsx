@@ -6,11 +6,13 @@ import Theme from '../utils/Theme.js';
 import CategoriesSection from '../components/CategoriesSection.jsx';
 import SolidSpace from "../components/SolidSpace.jsx"
 import StylesSection from '../components/StylesSection.jsx';
+import Footer from '../components/Footer.jsx';
+import SectionBreak from '../components/SectionBreak.jsx';
 
 export default function HomePage() {
   return (
     <ThemeProvider theme={Theme}>
-    <div style={{backgroundColor: "black"}} >
+    <div style={{backgroundColor: "white"}} >
       <div style={{ marginBottom: "70px" }}>
         <SolidSpace/>
         <Navbar/>
@@ -19,9 +21,14 @@ export default function HomePage() {
       <div style={{display: "flex", flexDirection: "column", alignItems: "center",maxWidth: "890px" ,margin: "0 auto", padding: "0 20px"}}>
         <Hero />
         <SolidSpace/><SolidSpace/>
+        <SectionBreak/>
         <CategoriesSection/>
+        <SectionBreak/>
         <StylesSection/>
         <SolidSpace/>
+      </div>
+      <div>
+        <Footer/>
       </div>
     </div>
     </ThemeProvider>
