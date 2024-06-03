@@ -20,13 +20,22 @@ import { useNavigate } from 'react-router-dom';
 import Logo from "../assets/Logo.png"
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Explore', 'About'];
+const navItems = ['Create', 'Explore', 'About'];
 
 export default function NavBar(props) {
   const navigate = useNavigate();
 
-  const handleNavItemClick =()=>{
-    console.log("hei");
+  const handleNavItemClick =(item)=>{
+    console.log(item);
+    switch(item)
+    {
+      case 'Create':
+        navigate("/createrecipe");
+        break;
+      default:
+        console.log("break");
+        break;
+    }
   }
 
   const { window } = props;
@@ -46,7 +55,7 @@ export default function NavBar(props) {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} onClick={handleNavItemClick} />
+              <ListItemText primary={item} key={item} onClick={()=>handleNavItemClick(item)} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -80,7 +89,7 @@ export default function NavBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} onClick={handleNavItemClick} sx={{ color: '#fff' }}>
+              <Button key={item} onClick={()=>handleNavItemClick(item)} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}
@@ -94,7 +103,7 @@ export default function NavBar(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
