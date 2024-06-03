@@ -1,0 +1,30 @@
+.categories-wrapper {
+    width: 100%; /* Adjust this to limit the width as needed */
+    max-width: 1000px; /* Example: max-width to limit the width */
+    margin: 0 auto; /* Center the container */
+    overflow-x: hidden; /* Hide horizontal overflow of the wrapper */
+    padding: 10px;
+  }
+  
+  .categories-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    white-space: nowrap;
+    padding: 10px;
+    scroll-behavior: smooth; /* For smooth scrolling */
+  }
+  
+  .categories-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .categories-container::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10px;
+  }
+  
+  .categories-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
