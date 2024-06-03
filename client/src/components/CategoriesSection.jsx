@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryCard from './CategoryParts/CategoryCard';
+import CategoryCard from './CategoryAndStyleParts/CategoryCard';
 
 import Appetizers from "../assets/Categories/Appetizers.jpg";
 import Main from "../assets/Categories/Main.jpg";

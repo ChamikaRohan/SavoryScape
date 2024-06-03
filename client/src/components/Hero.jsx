@@ -16,7 +16,7 @@ export default function CarouselWithText() {
     return (
         <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {/* Additional content on top */}
-            <Typography variant="p" style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', zIndex: 1, color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: "20px" , marginLeft:"20px",marginRight:"20px"}}>
+            <Typography variant="p" style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', zIndex: 1, color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: "20px" , marginLeft:"20px",marginRight:"20px", fontFamily: "Poppins Medium"}}>
                 <TypeAnimation
                 sequence={[
                 'Discover the culinary wonders within our archives',
