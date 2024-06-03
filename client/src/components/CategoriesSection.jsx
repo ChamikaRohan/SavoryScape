@@ -1,11 +1,22 @@
 import React from 'react';
 import CategoryCard from './CategoryParts/CategoryCard';
-import Appetizer from "../assets/Categories/Appetizer.jpg";
-import './CategoriesSection.css'; // Import the CSS file
+
+import Appetizers from "../assets/Categories/Appetizers.jpg";
+import Main from "../assets/Categories/Main.jpg";
+import Salads from "../assets/Categories/Salads.jpg";
+import Soups from "../assets/Categories/Soups.jpg";
+import Desserts from "../assets/Categories/Desserts.jpg";
+import Beverages from "../assets/Categories/Desserts.jpg";
+import Vegetarian from "../assets/Categories/Vegetarian.jpg";
+import Seafood from "../assets/Categories/Seafood.jpg";
+import Breakfast from "../assets/Categories/Breakfast.jpg";
+
+import './CategoriesSection.css'; 
 import { Typography } from '@mui/material';
 
 export default function CategoriesSection() {
-  const foodCategories = [
+  const categoryImg =[Appetizers, Main, Salads, Soups, Desserts, Beverages, Vegetarian, Seafood, Breakfast]
+  const categoryNames = [
     "Appetizers",
     "Main Courses",
     "Salads",
@@ -14,18 +25,17 @@ export default function CategoriesSection() {
     "Beverages",
     "Vegetarian",
     "Seafood",
-    "Pasta",
-    "Breakfast/Brunch"
+    "Breakfast"
   ];
 
   return (
     <div className="categories-wrapper">
       <div style={{ display: "flex", flexDirection:"row", justifyContent: "flex-end" }}>
-        <Typography sx={{color: "white"}}>Categories</Typography>
+        <Typography variant="h5" sx={{color: "white", fontFamily: "Poppins Regular"}}> Food Categories</Typography>
       </div>
       <div className="categories-container">
-        {foodCategories.map((foodCategory, index) => (
-          <CategoryCard key={index} img={Appetizer} category={foodCategory} />
+        {categoryNames.map((name, index) => (
+          <CategoryCard key={index} img={categoryImg[index]} category={name} />
         ))}
       </div>
     </div>

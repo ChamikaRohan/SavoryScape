@@ -11,9 +11,9 @@ import { ThemeProvider } from '@emotion/react';
 export default function CategoryCard({ category, img }) {
   return (
     <ThemeProvider theme={Theme}>
-    <Card sx={{ maxWidth: 200,minWidth: 200 , backgroundColor: Theme.palette.secondary.main }}>
+    <Card sx={{ maxWidth: 200,minWidth: 200 , backgroundColor: Theme.palette.third.main }}>
       <CardActions sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 16px 0 16px" }}>
-        <Typography variant="h5" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: "Poppins Regular" }}>
           {category}
         </Typography>
         <Button sx={{ minWidth: 0, padding: 0 }} size="small" color="primary">
