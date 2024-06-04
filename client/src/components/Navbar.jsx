@@ -34,6 +34,9 @@ export default function NavBar(props) {
       case 'Logo':
         navigate("/");
         break;
+        case 'Explore':
+          navigate("/explorerecipes");
+          break;
       default:
         console.log("break");
         break;
