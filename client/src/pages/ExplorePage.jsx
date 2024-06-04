@@ -5,6 +5,7 @@ import { ThemeProvider } from '@emotion/react'
 import Theme from '../utils/Theme.js';
 import Footer from '../components/Footer';
 import Post from '../components/PostParts/Post.jsx';
+import { Grid } from '@mui/material';
 
 export default function ExplorePage() {
   const apiURL = import.meta.env.VITE_API_BASE_URL;
@@ -47,13 +48,18 @@ export default function ExplorePage() {
         <NavBar/>
         <SolidSpace/>
       </div>
-      <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start",maxWidth: "890px" ,margin: "0 auto", padding: "0 20px"}}>
-        {recipes.map((recipe)=>{
-          return <Post _id={recipe._id} likes={0} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
-        })}
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center",maxWidth: "890px" ,margin: "0 auto", padding: "0 20px"}}>
+        <Grid container>
+          {recipes.map((recipe)=>{
+            return <Grid sx={{ marginBottom: "20px",display: "flex", alignItems: "flex-start", justifyContent: "center"  }} item xs={12} sm={6} md={4}>
+              <Post _id={recipe._id} likes={0} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
+            </Grid>
+          })}
+        </Grid>
       
       </div>
     </div>
+    <SolidSpace/>
     <Footer/>
     </ThemeProvider>
   )

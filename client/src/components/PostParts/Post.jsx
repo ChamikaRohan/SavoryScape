@@ -77,9 +77,9 @@ export default function Post({_id, likes, name, style, description, image }) {
   //   }, { once: true });
   // };
   return (
-    <Card elevation={2} sx={{ ":hover": {boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)"}, maxWidth: 320 }}>
-      <CardHeader action={ <IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
-        title={name}
+    <Card elevation={2} sx={{ ":hover": {boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)"}, maxWidth: 220 }}>
+      <CardHeader
+        title={<Typography variant='h7' sx={{ fontFamily: "Poppins Medium" }}>{name}</Typography>}
         subheader={style}/>
       
       <CardMedia
@@ -87,20 +87,21 @@ export default function Post({_id, likes, name, style, description, image }) {
         height="194"
         image={image}
         alt="memory img"
+        sx={{maxHeight: "120px"}}
       />
 
-      <CardContent>
+      <CardContent sx={{paddingBottom: "0"}}>
         <Typography variant="body2" color="text.secondary">{truncatedName}</Typography>
       </CardContent>
 
-      <CardActions sx={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} disableSpacing>
+      <CardActions sx={{ padding: "0" ,display: "flex", flexDirection: "row", justifyContent: "space-between"}} disableSpacing>
+        {/* <IconButton aria-label="delete">
+          <DeleteForeverIcon/>
+        </IconButton> */}
         <IconButton aria-label="like" sx={{color:'red'}}>
           <FavoriteIcon style={{ fontSize: '25px', display: 'inline-block' }} />
           <Typography sx={{color: "red", fontSize: "20px"}}>{likeCount}</Typography>
         </IconButton>
-        {/* <IconButton aria-label="delete">
-          <DeleteForeverIcon/>
-        </IconButton> */}
       </CardActions>
       {/* <Toaster/> */}
     </Card>
