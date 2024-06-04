@@ -17,6 +17,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+//import "../components/UIVerseCss/ExplorePageButton.css"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -27,6 +28,7 @@ export default function ExplorePage() {
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [open, setOpen] = React.useState(false);
+  const [isloading, setIsloading] = useState(true);
 
   const handleClickOpen = (recipe) => {
     setSelectedRecipe(recipe);
@@ -64,6 +66,7 @@ export default function ExplorePage() {
 
   useEffect(()=>{
     getrecipes();
+    //setIsloading(false);
   },[]);
 
   return (
@@ -74,6 +77,14 @@ export default function ExplorePage() {
         <NavBar/>
         <SolidSpace/>
       </div>
+
+      {/* <button className='explorebutton' class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 inline-flex items-center" type="button" disabled="">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 101" class="inline w-4 h-4 mr-3 text-white animate-bounce" role="status" aria-hidden="true">
+      <circle fill="#34D399" r="45" cy="50" cx="50"></circle>
+      </svg>
+      Loading...
+      </button>  */}
+
       <div style={{display: "flex", flexDirection: "column", alignItems: "center",maxWidth: "890px" ,margin: "0 auto", padding: "0 20px"}}>
         <div style={{display : "flex", flexDirection: "row", justifyContent: "center", width: "100%", marginBottom: "40px"}}>
           <Typography sx={{ fontSize:{xs: "25px", sm: "30px", md:"40px"} , fontFamily: "Poppins Semibold"}}>EXPLORE RECIPES</Typography>
@@ -115,25 +126,25 @@ export default function ExplorePage() {
           </Toolbar>
         </AppBar>
         <List>
-        <ListItemButton>
-            <ListItemText primary="Type" secondary={<Typography sx={{color: "gray", fontSize: "14px"}} >{selectedRecipe ? selectedRecipe.style : '' } {selectedRecipe ? selectedRecipe.category : '' }</Typography>} />
-          </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="Type" secondary={<Typography sx={{color: "gray", fontSize: "14px"}} >{selectedRecipe ? selectedRecipe.style : '' } {selectedRecipe ? selectedRecipe.category : '' }</Typography>} />
+            </ListItemButton>
           <Divider />
-          <ListItemButton>
-            <ListItemText primary="Description" secondary={selectedRecipe ? selectedRecipe.description : ''} />
-          </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="Description" secondary={selectedRecipe ? selectedRecipe.description : ''} />
+            </ListItemButton>
           <Divider />
-          <ListItemButton>
-            <ListItemText primary="Ingrediants" secondary={selectedRecipe ? selectedRecipe.ingrediants : ''} />
-          </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="Ingrediants" secondary={selectedRecipe ? selectedRecipe.ingrediants : ''} />
+            </ListItemButton>
           <Divider />
-          <ListItemButton>
-            <ListItemText primary="Recipe" secondary={selectedRecipe ? selectedRecipe.recipe : ''} />
-          </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="Recipe" secondary={selectedRecipe ? selectedRecipe.recipe : ''} />
+            </ListItemButton>
           <Divider />
-          <ListItemButton sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-            <img style={{maxHeight: "400px"}} src={selectedRecipe ? selectedRecipe.imageUrl : ''} />
-          </ListItemButton>
+            <ListItemButton sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+              <img style={{maxHeight: "400px"}} src={selectedRecipe ? selectedRecipe.imageUrl : ''} />
+            </ListItemButton>
           {/* Add more details as needed */}
         </List>
       </Dialog>
