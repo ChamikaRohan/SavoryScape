@@ -20,7 +20,7 @@ function truncateContent(content, limit) {
   return content;
 }
 
-export default function Post({_id, likes, name, style, description, image }) {
+export default function Post({onClick,_id, likes, name, style, description, image }) {
   const apiURL = import.meta.env.VITE_API_BASE_URL;
 
   const truncatedName = truncateContent(description, 100);
@@ -77,7 +77,7 @@ export default function Post({_id, likes, name, style, description, image }) {
   //   }, { once: true });
   // };
   return (
-    <Card elevation={2} sx={{ ":hover": {boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)"}, maxWidth: 220 }}>
+    <Card onClick={onClick} elevation={2} sx={{ ":hover": {boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)"}, maxWidth: 220 }}>
       <CardHeader
         title={<Typography variant='h7' sx={{ fontFamily: "Poppins Medium" }}>{name}</Typography>}
         subheader={style}/>
