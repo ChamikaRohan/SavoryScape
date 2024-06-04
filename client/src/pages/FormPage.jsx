@@ -1,13 +1,25 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Typography } from '@mui/material';
+import { Typography, Button, styled } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import Theme from '../utils/Theme.js';
 import Navbar from "../components/Navbar.jsx"
 import Footer from '../components/Footer.jsx';
 import SolidSpace from '../components/SolidSpace.jsx';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 export default function FormPage() {
 
@@ -48,13 +60,13 @@ export default function FormPage() {
         </div>
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Typography sx={{ fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Name</Typography>
-          <TextField required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
+          <Typography sx={{whiteSpace: "nowrap" , marginRight: { xs: "110px", sm : "180px", md: "250px" } ,fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Name</Typography>
+          <TextField fullWidth  required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
         </div>
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
           <Typography sx={{ fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Category</Typography>
-          <TextField select SelectProps={{native: true}} required id="outlined-select-required" label="Select" helperText="Please select food catgeory" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} >
+          <TextField  select SelectProps={{native: true}} required id="outlined-select-required" label="Select" helperText="Please select food catgeory" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} >
           {categoryNames.map((option) => (
             <option key={option} value={option}>
               {option}
@@ -75,23 +87,30 @@ export default function FormPage() {
         </div>
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Typography sx={{ fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Description</Typography>
-          <TextField required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
+          <Typography sx={{ whiteSpace: "nowrap" , marginRight: { xs: "110px", sm : "180px", md: "250px" } ,fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Description</Typography>
+          <TextField fullWidth multiline rows={6} required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
         </div>
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Typography sx={{ fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Ingrediants</Typography>
-          <TextField required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
+          <Typography sx={{ whiteSpace: "nowrap" , marginRight: { xs: "110px", sm : "180px", md: "250px" } ,fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Ingrediants</Typography>
+          <TextField fullWidth multiline required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
         </div>
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Typography sx={{ fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Recipe</Typography>
-          <TextField required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
+          <Typography sx={{ whiteSpace: "nowrap" , marginRight: { xs: "110px", sm : "180px", md: "250px" } ,fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>The Recipe</Typography>
+          <TextField fullWidth multiline rows={10} required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
         </div>
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Typography sx={{ fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Image</Typography>
-          <TextField required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
+          <Typography sx={{ whiteSpace: "nowrap" , marginRight: { xs: "110px", sm : "180px", md: "250px" } ,fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Image</Typography>
+          <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+            <Button style={{flexGrow: 1, marginRight: "10px"}}  component="label" variant="contained" tabIndex={-1}>
+                <Typography sx={{ fontSize: { xs: "12px", sm: "14px", md: "15px" } }} >
+                  Select picture
+                </Typography>
+              <VisuallyHiddenInput type="file" accept="image/*" /></Button>
+            <Button variant="contained" color="primary" size="large" type="submit" fullWidth style={{ maxWidth: "10px" }}><CloudUploadIcon /></Button>
+          </div>
         </div>
      </div>
     </div>

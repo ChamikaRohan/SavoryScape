@@ -25,7 +25,7 @@ export default function CarouselWithText() {
                 1000,
                 'Discover the joy of cooking with us',
                 1000,]}
-                wrapper="span" speed={50} style={{ fontSize: '2em', display: 'inline-block' }} repeat={Infinity}/>
+                wrapper="span" speed={50} style={{ fontSize: '1em', display: 'inline-block',fontFamily: "Poppins Regular" }} repeat={Infinity}/>
             </Typography>
 
             {/* Carousel */}
