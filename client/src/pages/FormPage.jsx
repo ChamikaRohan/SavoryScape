@@ -148,7 +148,7 @@ export default function FormPage() {
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
           <Typography sx={{ whiteSpace: "nowrap" , marginRight: { xs: "110px", sm : "180px", md: "250px" } ,fontSize: {xs: "15px", sm: "18px", md:"20px"} ,fontFamily: "Poppins Regular" }}>Recipe Description</Typography>
-          <TextField required value={description} onChange={(e)=>setDescription(e.target.value)} fullWidth multiline rows={6} required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
+          <TextField value={description} onChange={(e)=>setDescription(e.target.value)} fullWidth multiline rows={6} required id="outlined-required" label="Required" inputProps={{ sx: {fontFamily: "Poppins Regular",fontSize: { xs: '12px', sm: '15px', md: '16px' }} }} InputLabelProps={{ sx: {fontFamily: "Poppins Regular", fontSize: { xs: '15px', sm: '15px', md: '15px' }}  }} />
         </div>
 
         <div style={{ marginBottom: "30px" ,width: "100%" ,display:"flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
