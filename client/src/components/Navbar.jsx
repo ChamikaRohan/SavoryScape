@@ -26,11 +26,13 @@ export default function NavBar(props) {
   const navigate = useNavigate();
 
   const handleNavItemClick =(item)=>{
-    console.log(item);
     switch(item)
     {
       case 'Create':
         navigate("/createrecipe");
+        break;
+      case 'Logo':
+        navigate("/");
         break;
       default:
         console.log("break");
@@ -48,7 +50,7 @@ export default function NavBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-      <img src={Logo} alt="Logo" style={{ height: "40px", marginRight: "10px" }} />
+      <img onClick={()=>handleNavItemClick("Logo")} src={Logo} alt="Logo" style={{ height: "40px", marginRight: "10px" }} />
       </Typography>
       <Divider />
       <List>
@@ -85,7 +87,7 @@ export default function NavBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            <img src={Logo} alt="Logo" style={{ height: "40px", marginRight: "10px" }} />
+            <img onClick={()=>handleNavItemClick("Logo")} src={Logo} alt="Logo" style={{ height: "40px", marginRight: "10px" }} />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.server.server.services.RecipeImageService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/recipe")
 public class RecipeImageController {
@@ -28,12 +30,13 @@ public class RecipeImageController {
         {
             try{
                 String id = recipeimgservice.storeRecipeImage(file);
-                return ResponseEntity.ok("Recipe image created sucessfully!");
+                return ResponseEntity.ok("{\"message\":\"Recipe image created successfully!\", \"id\": \"" + id + "\"}");
+
             }
             catch(IOException e)
             {
                 e.printStackTrace();
-                return ResponseEntity.status(500).body("Recipe image cannot be created!");
+                return ResponseEntity.status(500).body("{\"message\":Recipe image cannot be created!}");
             }
         }
         @GetMapping("/getrecipeimg")

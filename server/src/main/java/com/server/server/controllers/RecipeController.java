@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.server.server.models.Recipe;
 import com.server.server.services.RecipeService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/recipe")
 public class RecipeController {
@@ -41,12 +43,12 @@ public class RecipeController {
         try
         {
             recipeService.saveRecipe(recipe);
-            return ResponseEntity.ok("Recipe saved successfully!");
+            return ResponseEntity.ok("{\"message\": \"Recipe saved successfully!\"}");
         }
         catch(Exception e)
         {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\": \"An error occurred while saving the recipe.\"}");
         }
     }
 
