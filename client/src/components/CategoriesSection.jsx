@@ -13,10 +13,13 @@ import Seafood from "../assets/Categories/Seafood.jpg";
 import Breakfast from "../assets/Categories/Breakfast.jpg";
 
 import './CategoriesSection.css'; 
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CategoriesSection() {
+  const navigate = useNavigate();
+  
   const categoryImg =[Appetizers, Main, Salads, Soups, Desserts, Beverages, Vegetarian, Seafood, Breakfast]
   const categoryNames = [
     "Appetizers",
@@ -30,11 +33,17 @@ export default function CategoriesSection() {
     "Breakfast"
   ];
 
+  const handleCategoryClick = () =>{
+    navigate("/categories");
+  }
+
   return (
     <ThemeProvider theme={Theme}>
     <div className="categories-wrapper">
       <div style={{ display: "flex", flexDirection:"row", justifyContent: "flex-end" }}>
-        <Typography variant="h5" sx={{color: Theme.palette.primary.main, fontFamily: "Poppins Regular"}}> Food Categories</Typography>
+        <Button onClick={handleCategoryClick}>
+          <Typography variant="h5" sx={{color: Theme.palette.primary.main, fontFamily: "Poppins Regular"}}> Food Categories</Typography>
+        </Button>
       </div>
       <div className="categories-container">
         {categoryNames.map((name, index) => (
