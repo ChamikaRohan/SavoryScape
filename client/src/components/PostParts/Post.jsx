@@ -38,16 +38,33 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Post({onClick,_id, name, style, description, image, comments }) {
+export default function Post({onClick, id, name, style, description, image, comments }) {
   const apiURL = import.meta.env.VITE_API_BASE_URL;
-
   const truncatedName = truncateContent(description, 100);
-
   const [expanded, setExpanded] = React.useState(false);
+  const [newcomment, setNewcomment] = React.useState("");
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const handlePostComment = async() =>{
+    try{
+      const response = await fetch(`${apiURL}/recipe/addcomment/${id}`,{
+        method: "POST",
+        headers : {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newcomment)
+      });
+      const data = await response.json();
+      console.log(data.message);
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
+  }
 
   return (
     <Card elevation={2} sx={{ ":hover": {boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)"}, maxWidth: 220, maxHeight: "auto" }}>
@@ -69,8 +86,10 @@ export default function Post({onClick,_id, name, style, description, image, comm
 
       <CardActions disableSpacing>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           <TextField
+            value={newcomment}
+            onChange={(e)=>setNewcomment(e.target.value)}
             id="outlined-required"
             label="Leave a comment"
             size="small"
@@ -96,13 +115,14 @@ export default function Post({onClick,_id, name, style, description, image, comm
           <Button 
             size="small" 
             variant="contained" 
-            // endIcon={<SendIcon sx={{padding: '0 0px 0 0px',}} />} 
             sx={{ 
               height: '40px', 
               minWidth: '40px', 
               fontSize: "10px",
-              fontFamily: "Poppins Regular"
-            }}>post</Button>
+              fontFamily: "Poppins Regular",
+              backgroundColor: "darkcyan"
+            }}
+            onClick={handlePostComment}>post</Button>
       </div>
 
         <ExpandMore
