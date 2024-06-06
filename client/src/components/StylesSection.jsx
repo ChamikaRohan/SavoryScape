@@ -13,8 +13,10 @@ import American from "../assets/Styles/American.jpg";
 import './CategoriesSection.css'; 
 import { Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 
 export default function StylesSection() {
+  const navigate = useNavigate();
   const styleNames = [
     "Italian",
     "Mexican",
@@ -27,6 +29,10 @@ export default function StylesSection() {
   
   const styleImgs = [Italian,Mexican,Chinese,Indian,French,Thai,American];
 
+  const handleStyleClick = (style) =>{
+    navigate(`/style/${style}`);
+  }
+
   return (
     <ThemeProvider theme={Theme}>
     <div className="categories-wrapper">
@@ -35,7 +41,7 @@ export default function StylesSection() {
       </div>
       <div className="categories-container">
         {styleNames.map((name, index) => (
-          <CategoryCard key={index} img={styleImgs[index]} category={name} />
+          <CategoryCard onClick={()=>handleStyleClick(name)} key={index} img={styleImgs[index]} category={name} />
         ))}
       </div>
     </div>
