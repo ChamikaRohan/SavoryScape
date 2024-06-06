@@ -8,10 +8,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Theme from "../../utils/Theme.js"
 import { ThemeProvider } from '@emotion/react';
 
-export default function CategoryCard({ category, img }) {
+export default function CategoryCard({ onClick, category, img }) {
   return (
     <ThemeProvider theme={Theme}>
-    <Card elevation={4} sx={{ maxWidth: 200,minWidth: 200 , backgroundColor: Theme.palette.third.main }}>
+    <Card onClick={onClick} elevation={4} sx={{ maxWidth: 200,minWidth: 200 , backgroundColor: Theme.palette.third.main }}>
       <CardActions sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 16px 0 16px" }}>
         <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: "Poppins Regular" }}>
           {category}

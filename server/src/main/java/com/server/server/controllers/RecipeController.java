@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +61,21 @@ public class RecipeController {
             if(recipe.isEmpty()) {return ResponseEntity.noContent().build(); }
             return ResponseEntity.ok(recipe);
         } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/getbycategory/{category}")
+    public ResponseEntity<List<Recipe>> getbycategory(@PathVariable String category)
+    {
+        try{
+            List<Recipe> recipesbycategory = recipeService.getByCategory(category);
+            if (recipesbycategory.isEmpty()) {return ResponseEntity.noContent().build(); }
+            return ResponseEntity.ok(recipesbycategory); 
+        }
+        catch(Exception e)
+        {
+            e.fillInStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

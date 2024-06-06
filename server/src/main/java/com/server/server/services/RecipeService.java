@@ -11,4 +11,6 @@ public interface RecipeService {
     public List<Recipe> getAllRecipes();
 
     public Optional<Recipe> getRecipe(String id);
+
+    public List<Recipe> getByCategory(String categroy);
 }

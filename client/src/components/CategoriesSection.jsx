@@ -7,7 +7,7 @@ import Main from "../assets/Categories/Main.jpg";
 import Salads from "../assets/Categories/Salads.jpg";
 import Soups from "../assets/Categories/Soups.jpg";
 import Desserts from "../assets/Categories/Desserts.jpg";
-import Beverages from "../assets/Categories/Desserts.jpg";
+import Beverages from "../assets/Categories/Beverages.jpg";
 import Vegetarian from "../assets/Categories/Vegetarian.jpg";
 import Seafood from "../assets/Categories/Seafood.jpg";
 import Breakfast from "../assets/Categories/Breakfast.jpg";
@@ -33,21 +33,21 @@ export default function CategoriesSection() {
     "Breakfast"
   ];
 
-  const handleCategoryClick = () =>{
-    navigate("/categories");
+  const handleCategoryClick = (category) =>{
+    navigate(`/category/${category}`);
   }
 
   return (
     <ThemeProvider theme={Theme}>
     <div className="categories-wrapper">
       <div style={{ display: "flex", flexDirection:"row", justifyContent: "flex-end" }}>
-        <Button onClick={handleCategoryClick}>
+        <Button>
           <Typography variant="h5" sx={{color: Theme.palette.primary.main, fontFamily: "Poppins Regular"}}> Food Categories</Typography>
         </Button>
       </div>
       <div className="categories-container">
         {categoryNames.map((name, index) => (
-          <CategoryCard key={index} img={categoryImg[index]} category={name} />
+          <CategoryCard  onClick={()=>handleCategoryClick(name)} key={index} img={categoryImg[index]} category={name} />
         ))}
       </div>
     </div>
