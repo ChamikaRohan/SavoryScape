@@ -58,8 +58,10 @@ export default function SpecificCategoryPage() {
   };
 
   const getrecipes = async ()=>{
-    const respone = await fetch(`${apiURL}/recipe/getalltrecipes`);
+    const respone = await fetch(`${apiURL}/recipe/getbycategory/${categoryname}`);
+    if (respone.status == 204) {setRecipes(null); setIsloading(false); ;return null;};
     const data = await respone.json();
+    
     const recipesWithImages = await Promise.all(data.map(async (recipe) => {
       const imageUrl = await getRecipeImage(recipe.imageId);
       return { ...recipe, imageUrl };
@@ -100,13 +102,28 @@ export default function SpecificCategoryPage() {
         </div> :
 
         <Grid container>
-          {recipes.map((recipe)=>{
-            return <Grid sx={{ marginBottom: "20px",display: "flex", alignItems: "flex-start", justifyContent: "center"  }} item xs={12} sm={6} md={4}>
-              <Post onClick={()=>handleClickOpen(recipe)} _id={recipe._id} likes={0} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
-            </Grid>
-          })}
-        </Grid>}
-      
+          
+          {recipes && recipes.length > 0 ?
+          (
+            recipes.map((recipe)=>(
+              <Grid sx={{ marginBottom: "20px",display: "flex", alignItems: "flex-start", justifyContent: "center"  }} item xs={12} sm={6} md={4}>
+                <Post onClick={()=>handleClickOpen(recipe)} _id={recipe._id} likes={0} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
+              </Grid>))
+          )
+          :
+          (
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "center",alignItems: "center", width: "100%", minHeight: "300px"}}>
+              <Typography variant="h6" sx={{color:"red"}}>
+                Currently there are no available options for {categoryname}
+              </Typography>
+            </div>
+          )
+          
+        }
+        </Grid>
+        
+        
+        }
       </div>
     </div>
     <SolidSpace/>
