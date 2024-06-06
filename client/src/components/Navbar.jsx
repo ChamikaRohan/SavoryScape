@@ -88,16 +88,19 @@ export default function NavBar(props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}
           >
             <img onClick={()=>handleNavItemClick("Logo")} src={Logo} alt="Logo" style={{ height: "40px", marginRight: "10px" }} />
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
             {navItems.map((item) => (
               <Button key={item} onClick={()=>handleNavItemClick(item)} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}
+          </Box>
+          <Box sx={{ display: { xs: 'flex', sm: 'none'}, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", width: "100%" }}>
+          <img onClick={()=>handleNavItemClick("Logo")} src={Logo} alt="Logo" style={{ height: "40px", marginRight: "10px" }} />
           </Box>
         </Toolbar>
       </AppBar>
