@@ -79,4 +79,19 @@ public class RecipeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/getbystyle/{style}")
+    public ResponseEntity<List<Recipe>> getbystyle(@PathVariable String style)
+    {
+        try{
+            List<Recipe> recipesbystyle = recipeService.getByStyle(style);
+            if (recipesbystyle.isEmpty()) {return ResponseEntity.noContent().build(); }
+            return ResponseEntity.ok(recipesbystyle); 
+        }
+        catch(Exception e)
+        {
+            e.fillInStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }

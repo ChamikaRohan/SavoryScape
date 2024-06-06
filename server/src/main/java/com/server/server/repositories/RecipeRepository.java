@@ -10,4 +10,5 @@ import com.server.server.models.Recipe;
 @Repository
 public interface RecipeRepository extends MongoRepository<Recipe, String>{
     List<Recipe> findByCategory(String category);
+    List<Recipe> findByStyle(String style);
 }

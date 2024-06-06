@@ -31,8 +31,14 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipe = recipeRepo.findById(id);
         return recipe;
     }
+
     public List<Recipe> getByCategory(String category)
     {
         return recipeRepo.findByCategory(category);
+    }
+
+    public List<Recipe> getByStyle(String style)
+    {
+        return recipeRepo.findByStyle(style);
     }
 }

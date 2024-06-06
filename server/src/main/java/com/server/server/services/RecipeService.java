@@ -13,4 +13,6 @@ public interface RecipeService {
     public Optional<Recipe> getRecipe(String id);
 
     public List<Recipe> getByCategory(String categroy);
+
+    public List<Recipe> getByStyle(String style);
 }
