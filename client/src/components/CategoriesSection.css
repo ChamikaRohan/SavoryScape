@@ -8,23 +8,27 @@
   
   .categories-container {
     display: flex;
+    justify-content: center;
     gap: 15px;
-    overflow-x: auto; /* Allow horizontal scrolling */
+    overflow-x: auto; 
     white-space: nowrap;
     padding: 10px;
-    scroll-behavior: smooth; /* For smooth scrolling */
+    scroll-behavior: smooth;
   }
   
   .categories-container::-webkit-scrollbar {
-    height: 8px;
+    height: 9px;
   }
   
+  /* Scorling bar settings */
   .categories-container::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
+    background-color: black;
     border-radius: 10px;
+    width: 6px;
   }
   
   .categories-container::-webkit-scrollbar-track {
     background: transparent;
   }
+  
   

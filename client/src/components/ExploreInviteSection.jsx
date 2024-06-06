@@ -18,7 +18,7 @@ export default function ExploreInviteSection() {
       </div>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
         <Typography style={{ fontFamily: "Poppins Regular", fontSize: "25px" ,textAlign: "center",marginBottom: "25px", display: "flex", alignItems: "center", justifyContent: "center"}} variant="h4">
-        Explore our collection  <br/> of tasty dishes!
+        Explore the collection  <br/> of our tasty dishes!
         </Typography>
         <button class="butt type1" onClick={handleExploreClick}/>
       </div>

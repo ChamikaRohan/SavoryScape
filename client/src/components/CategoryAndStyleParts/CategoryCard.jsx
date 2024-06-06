@@ -15,8 +15,8 @@ export default function CategoryCard({ onClick, category, img }) {
         onClick={onClick} 
         elevation={4} 
         sx={{ 
-          maxWidth: 200,
-          minWidth: 200, 
+          maxWidth: 100,
+          minWidth: 100, 
           backgroundColor: Theme.palette.third.main,
           transition: "transform 0.3s, box-shadow 0.3s",
           '&:hover': {
@@ -25,8 +25,8 @@ export default function CategoryCard({ onClick, category, img }) {
           }
         }}
       >
-        <CardActions sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 16px 0 16px" }}>
-          <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: "Poppins Regular" }}>
+        <CardActions sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "5px 1px 0 5px" }}>
+          <Typography sx={{ fontSize: "10px" ,flexGrow: 1, fontFamily: "Poppins Regular" }}>
             {category}
           </Typography>
           <Button sx={{ minWidth: 0, padding: 0 }} size="small" color="primary">
@@ -36,9 +36,10 @@ export default function CategoryCard({ onClick, category, img }) {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="160"
+            height="80"
             image={img}
             alt="category"
+            style={{padding: "5px 5px 5px 5px" }}
           />
         </CardActionArea>
       </Card>
