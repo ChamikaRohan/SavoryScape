@@ -12,13 +12,13 @@ export default function ExploreInviteSection() {
   };
 
   return (
-    <div className="explore-invite-wrapper">
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
       <div className="image-container">
         <img className="animate-up-down" src={exploreinvite} alt="Explore Invite" />
       </div>
-      <div className="text-container">
-        <Typography style={{ marginBottom: "25px", marginLeft: "20px" }} variant="h4" className="invite-text">
-          Come and Explore Our Exciting Features!
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+        <Typography style={{ fontFamily: "Poppins Regular", fontSize: "25px" ,textAlign: "center",marginBottom: "25px", display: "flex", alignItems: "center", justifyContent: "center"}} variant="h4">
+        Explore our collection  <br/> of tasty dishes!
         </Typography>
         <button class="butt type1" onClick={handleExploreClick}/>
       </div>
