@@ -107,7 +107,7 @@ export default function SpecificCategoryPage() {
           (
             recipes.map((recipe)=>(
               <Grid sx={{ marginBottom: "20px",display: "flex", alignItems: "flex-start", justifyContent: "center"  }} item xs={12} sm={6} md={4}>
-                <Post onClick={()=>handleClickOpen(recipe)} _id={recipe._id} likes={0} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
+                <Post onClick={()=>handleClickOpen(recipe)} comments={recipe.comments} id={recipe.id} likes={0} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
               </Grid>))
           )
           :

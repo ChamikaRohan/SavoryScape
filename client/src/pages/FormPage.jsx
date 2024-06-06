@@ -10,6 +10,7 @@ import SolidSpace from '../components/SolidSpace.jsx';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useState, useEffect } from 'react';
 import LoadingIcons from 'react-loading-icons'
+import {Toaster, toast} from "react-hot-toast"
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -98,10 +99,14 @@ export default function FormPage() {
           body: JSON.stringify({name, category, style, description, ingrediants, recipe, imageId})
         });
         const data = await response.json();
-        console.log(data.message);
+        toast.success('Recipe added succesfully!',{duration: 1500});
+        setTimeout(()=>{
+            window.location.reload();
+        }, 1800);
       }
       catch(error)
       {
+        toast.error("Faild to add the recipe!",{duration: 1500});
         console.log(data.message);
       }
     }
@@ -178,6 +183,7 @@ export default function FormPage() {
      </div>
     </div>
     <Footer/>
+    <Toaster position="top-center" reverseOrder={false}/>
     </ThemeProvider>
   );
 }

@@ -19,6 +19,7 @@ import { Button, Divider, List, ListItemText, Paper, TextField } from '@mui/mate
 import Grid from 'react-loading-icons/dist/esm/components/grid';
 import SendIcon from '@mui/icons-material/Send';
 import "./Post.css"
+import {Toaster, toast} from "react-hot-toast"
 
 function truncateContent(content, limit) {
   if (content.length > limit) {
@@ -58,10 +59,14 @@ export default function Post({onClick, id, name, style, description, image, comm
         body: JSON.stringify(newcomment)
       });
       const data = await response.json();
-      console.log(data.message);
+      toast.success('Comment added succesfully!',{duration: 1500});
+      setTimeout(()=>{
+        window.location.reload();
+    }, 1800);
     }
     catch(error)
     {
+      toast.error("Comment was failed!",{duration: 1500});
       console.log(error);
     }
   }
@@ -151,7 +156,7 @@ export default function Post({onClick, id, name, style, description, image, comm
         )}
       </CardContent>
     </Collapse>
-      {/* <Toaster/> */}
+    <Toaster position="top-center" reverseOrder={false}/>
     </Card>
   );
 }
