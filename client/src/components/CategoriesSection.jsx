@@ -41,9 +41,7 @@ export default function CategoriesSection() {
     <ThemeProvider theme={Theme}>
     <div className="categories-wrapper">
       <div style={{ display: "flex", flexDirection:"row", justifyContent: "flex-end" }}>
-        <Button>
           <Typography variant="h5" sx={{color: Theme.palette.primary.main, fontFamily: "Poppins Regular"}}> Food Categories</Typography>
-        </Button>
       </div>
       <div className="categories-container">
         {categoryNames.map((name, index) => (

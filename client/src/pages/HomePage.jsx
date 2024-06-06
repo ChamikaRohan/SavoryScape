@@ -8,6 +8,7 @@ import SolidSpace from "../components/SolidSpace.jsx"
 import StylesSection from '../components/StylesSection.jsx';
 import Footer from '../components/Footer.jsx';
 import SectionBreak from '../components/SectionBreak.jsx';
+import ExploreInviteSection from '../components/ExploreInviteSection.jsx';
 
 export default function HomePage() {
   return (
@@ -21,6 +22,8 @@ export default function HomePage() {
       <div style={{display: "flex", flexDirection: "column", alignItems: "center",maxWidth: "890px" ,margin: "0 auto", padding: "0 20px"}}>
         <Hero />
         <SolidSpace/><SolidSpace/>
+        <SectionBreak/>
+        <ExploreInviteSection/>
         <SectionBreak/>
         <CategoriesSection/>
         <SectionBreak/>
