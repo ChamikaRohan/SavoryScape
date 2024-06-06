@@ -122,4 +122,16 @@ public class RecipeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/searchrecipe/{name}")
+    public ResponseEntity<List<Recipe>> searchrecipe(@PathVariable String name)
+    {
+        try {
+            List<Recipe> recipe = recipeService.searchRecipe(name);
+            if(recipe.isEmpty()) {return ResponseEntity.noContent().build(); }
+            return ResponseEntity.ok(recipe);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }

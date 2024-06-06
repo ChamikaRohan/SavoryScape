@@ -11,4 +11,5 @@ import com.server.server.models.Recipe;
 public interface RecipeRepository extends MongoRepository<Recipe, String>{
     List<Recipe> findByCategory(String category);
     List<Recipe> findByStyle(String style);
+    List<Recipe> findByNameContainingIgnoreCase(String name);
 }

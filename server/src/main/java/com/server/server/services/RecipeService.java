@@ -19,4 +19,6 @@ public interface RecipeService {
     public void addComment(String comment, String id);
 
     public String[] getComments(String id);
+
+    public List<Recipe> searchRecipe(String name);
 }

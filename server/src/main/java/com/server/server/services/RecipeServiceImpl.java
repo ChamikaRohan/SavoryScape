@@ -70,4 +70,9 @@ public class RecipeServiceImpl implements RecipeService {
         String[] comments  = recipe.getComments();
         return comments;
     }
+
+    public List<Recipe> searchRecipe(String name)
+    {
+        return recipeRepo.findByNameContainingIgnoreCase(name);
+    }
 }
