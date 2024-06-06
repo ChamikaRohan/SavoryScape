@@ -10,7 +10,7 @@ import HeroBanner5 from "../assets/HeroBanner5.jpeg";
 import { Typography } from '@mui/material';
 import { TypeAnimation } from 'react-type-animation';
 
-export default function CarouselWithText() {
+export default function Hero() {
     const srcList = [HeroBanner1, HeroBanner2, HeroBanner3, HeroBanner4, HeroBanner5];
 
     return (
@@ -40,7 +40,7 @@ export default function CarouselWithText() {
                     xl: 1
                 }}
                 itemRenderer={(item) => <CustomCard url={item} />}
-                maxContainerWidth={theme.breakpoints.values["md"]}
+                //maxContainerWidth={theme.breakpoints.values["md"]}
             />
         </div>
     );

@@ -94,4 +94,32 @@ public class RecipeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @PostMapping("/addcomment/{id}")
+    public ResponseEntity<String> addcomment(@RequestBody String comment,@PathVariable String id)
+    {
+        try{
+            recipeService.addComment(comment, id);
+            return ResponseEntity.ok("{\"message\": \"Comment added successfully!\"}");
+        }
+        catch(Exception e)
+        {
+            e.fillInStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/getcomments/{id}")
+    public ResponseEntity<String[]> getcomments(@PathVariable String id)
+    {
+        try{
+            String[] comments = recipeService.getComments(id);
+            return ResponseEntity.ok(comments);
+        }
+        catch(Exception e)
+        {
+            e.fillInStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }

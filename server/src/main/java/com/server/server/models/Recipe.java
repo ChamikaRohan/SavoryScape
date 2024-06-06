@@ -14,6 +14,7 @@ public class Recipe {
     private String ingrediants;
     private String recipe;
     private String imageId;
+    private String[] comments;
 
     public Recipe()
     {}
@@ -82,5 +83,15 @@ public class Recipe {
     public void setImageId(String imageId) {
         this.imageId = imageId;
     }
+
+
+    public String[] getComments() {
+        return this.comments;
+    }
+
+    public void setComments(String[] comments) {
+        this.comments = comments;
+    }
+
 
 }

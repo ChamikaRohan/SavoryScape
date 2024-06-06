@@ -1,0 +1,52 @@
+.addcomment {
+    background: royalblue;
+    color: white;
+    padding: 0.2em 00em;
+    padding-left: 0em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .addcomment span {
+    display: block;
+    margin-left: 0.1em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .addcomment svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .addcomment:hover .svg-wrapper {
+    animation: fly-1 0.3s ease-in-out infinite alternate;
+  }
+  
+  .addcomment:hover svg {
+    transform: translateX(1em) rotate(45deg) scale(0.9);
+  }
+  
+  .addcomment:hover span {
+    transform: translateX(5em);
+  }
+  
+  .addcomment:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  

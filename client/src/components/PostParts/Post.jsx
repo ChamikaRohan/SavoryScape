@@ -5,13 +5,20 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-// import {Toaster, toast} from "react-hot-toast"
+import { styled } from '@mui/material/styles';
+import Collapse from '@mui/material/Collapse';
+import Avatar from '@mui/material/Avatar';
+import { red } from '@mui/material/colors';
+import ShareIcon from '@mui/icons-material/Share';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "./styles.css"
+import { Button, Divider, List, ListItemText, Paper, TextField } from '@mui/material';
+import Grid from 'react-loading-icons/dist/esm/components/grid';
+import SendIcon from '@mui/icons-material/Send';
+import "./Post.css"
 
 function truncateContent(content, limit) {
   if (content.length > limit) {
@@ -20,69 +27,35 @@ function truncateContent(content, limit) {
   return content;
 }
 
-export default function Post({onClick,_id, likes, name, style, description, image }) {
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
+export default function Post({onClick,_id, name, style, description, image, comments }) {
   const apiURL = import.meta.env.VITE_API_BASE_URL;
 
   const truncatedName = truncateContent(description, 100);
-  const [likeCount, setLikeCount] = React.useState(likes);
 
-  // const handleDelete = async()=>{
-  //   try{
-  //     const response = await fetch(`${apiURL}/posts/delete-pmessage`,{
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({_id})
-  //     });
-  
-  //     const data = await response.json();
-  //     toast.success('Post-memory deletion successful!',{duration: 1500});
-  //     setTimeout(()=>{
-  //       window.location.reload();
-  //     }, 1800);
-  
-  //   }
-  //   catch(error)
-  //   {
-  //     toast.error('Post-memory deletion failed!',{duration: 1500});
-  //     toast.error(`${error}`,{duration: 1500});
-  //     console.log("There was a problem with the fetch operation: ", error);
-  //   }
-  // }
+  const [expanded, setExpanded] = React.useState(false);
 
-  // const handleLike = async () => {
-  //   const newLikesCount = likeCount + 1;
-  //   setLikeCount(newLikesCount); 
-  
-  //   try {
-  //     const response = await fetch(`${apiURL}/posts/update-pmessage`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({ _id, likeCount: newLikesCount }) // Use newLikesCount here
-  //     });
-  //     const data = await response.json();
-  //     console.log(data.message);
-  //   } catch (error) {
-  //     console.error("There was a problem with the fetch operation:", error);
-  //   }
-  // }
-  // const handleClick = (event) => {
-  //   const element = event.currentTarget;
-  //   element.style.animation = 'heartBeat 0.6s ease-in-out';
-  //   element.addEventListener('animationend', () => {
-  //     element.style.animation = '';
-  //   }, { once: true });
-  // };
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   return (
-    <Card onClick={onClick} elevation={2} sx={{ ":hover": {boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)"}, maxWidth: 220 }}>
-      <CardHeader
+    <Card elevation={2} sx={{ ":hover": {boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)"}, maxWidth: 220, maxHeight: "auto" }}>
+      <CardHeader onClick={onClick}
         title={<Typography variant='h7' sx={{ fontFamily: "Poppins Medium" }}>{name}</Typography>}
         subheader={style}/>
       
-      <CardMedia
+      <CardMedia onClick={onClick}
         component="img"
         height="194"
         image={image}
@@ -90,19 +63,74 @@ export default function Post({onClick,_id, likes, name, style, description, imag
         sx={{maxHeight: "120px"}}
       />
 
-      <CardContent sx={{paddingBottom: "0"}}>
+      <CardContent onClick={onClick} sx={{paddingBottom: "0"}}>
         <Typography variant="body2" color="text.secondary">{truncatedName}</Typography>
       </CardContent>
 
-      <CardActions sx={{ padding: "0" ,display: "flex", flexDirection: "row", justifyContent: "space-between"}} disableSpacing>
-        {/* <IconButton aria-label="delete">
-          <DeleteForeverIcon/>
-        </IconButton> */}
-        <IconButton aria-label="like" sx={{color:'red'}}>
-          <FavoriteIcon style={{ fontSize: '25px', display: 'inline-block' }} />
-          <Typography sx={{color: "red", fontSize: "20px"}}>{likeCount}</Typography>
-        </IconButton>
+      <CardActions disableSpacing>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'px' }}>
+          <TextField
+            id="outlined-required"
+            label="Leave a comment"
+            size="small"
+            fullWidth
+            multiline
+            inputProps={{ 
+              sx: { 
+                fontFamily: "Poppins Regular", 
+                fontSize: { xs: '9px', sm: '9px', md: '10px' }, 
+                height: '40px', // Set consistent height
+              } 
+            }}
+            InputLabelProps={{ 
+              sx: { 
+                fontFamily: "Poppins Regular", 
+                fontSize: { xs: '10px', sm: '10px', md: '11px' },
+                lineHeight: '40px', // Set consistent height for label
+              }  
+            }}
+            sx={{ height: '40px' }} // Set consistent height for TextField
+          />
+
+          <Button 
+            size="small" 
+            variant="contained" 
+            // endIcon={<SendIcon sx={{padding: '0 0px 0 0px',}} />} 
+            sx={{ 
+              height: '40px', 
+              minWidth: '40px', 
+              fontSize: "10px",
+              fontFamily: "Poppins Regular"
+            }}>post</Button>
+      </div>
+
+        <ExpandMore
+          sx={{padding: "0"}}
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more">
+          <ExpandMoreIcon />
+        </ExpandMore>
       </CardActions>
+
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <CardContent>
+        <List>
+        <Typography sx={{ fontSize: { xs: "11px", sm: "12px" } }}>Comments Section</Typography>
+              <Divider />
+        </List>
+
+        {Array.isArray(comments) && comments.length > 0 ? (
+          comments.map((comment, index) => (
+              <Typography sx={{ color: "gray" , fontSize: { xs: "9px", sm: "11px" } }}>{comment}</Typography>
+          ))
+        ) : (
+          <Typography sx={{ color: "gray", fontSize: { xs: "9px", sm: "11px" } }}>No comments available</Typography>
+        )}
+      </CardContent>
+    </Collapse>
       {/* <Toaster/> */}
     </Card>
   );

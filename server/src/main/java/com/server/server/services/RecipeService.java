@@ -15,4 +15,8 @@ public interface RecipeService {
     public List<Recipe> getByCategory(String categroy);
 
     public List<Recipe> getByStyle(String style);
+
+    public void addComment(String comment, String id);
+
+    public String[] getComments(String id);
 }
