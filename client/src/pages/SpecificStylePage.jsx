@@ -101,7 +101,7 @@ export default function SpecificCategoryPage() {
           </button>
         </div> :
 
-        <Grid container>
+        <Grid container style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
           
           {recipes && recipes.length > 0 ?
           (

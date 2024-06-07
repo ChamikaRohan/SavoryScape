@@ -128,7 +128,7 @@ public class RecipeController {
     {
         try {
             List<Recipe> recipe = recipeService.searchRecipe(name);
-            if(recipe.isEmpty()) {return ResponseEntity.noContent().build(); }
+            if(recipe.isEmpty()) {return ResponseEntity.status(500).body(null); }
             return ResponseEntity.ok(recipe);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

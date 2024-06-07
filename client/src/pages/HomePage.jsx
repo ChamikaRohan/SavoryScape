@@ -23,8 +23,10 @@ export default function HomePage() {
         <Hero />
         <SolidSpace/>
         <SectionBreak/>
+        <SolidSpace/>
         <ExploreInviteSection/>
         <SectionBreak/>
+        <SolidSpace/>
         <CategoriesSection/>
         <SectionBreak/>
         <StylesSection/>

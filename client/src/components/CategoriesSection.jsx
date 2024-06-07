@@ -16,6 +16,7 @@ import './CategoriesSection.css';
 import { Button, Typography } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
+import SolidSpace from './SolidSpace';
 
 export default function CategoriesSection() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ export default function CategoriesSection() {
       <div style={{ display: "flex", flexDirection:"row", justifyContent: "flex-end" }}>
           <Typography variant="h5" sx={{color: Theme.palette.primary.main, fontFamily: "Poppins Regular"}}> Food Categories</Typography>
       </div>
+      <SolidSpace/>
       <div className="categories-container">
         {categoryNames.map((name, index) => (
           <CategoryCard  onClick={()=>handleCategoryClick(name)} key={index} img={categoryImg[index]} category={name} />

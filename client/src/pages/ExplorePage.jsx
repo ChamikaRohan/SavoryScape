@@ -96,7 +96,7 @@ export default function ExplorePage() {
           </button>
         </div> :
 
-        <Grid container>
+        <Grid container style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
           {recipes.map((recipe)=>{
             return <Grid sx={{ marginBottom: "20px",display: "flex", alignItems: "flex-start", justifyContent: "center"  }} item xs={12} sm={6} md={4}>
               <Post onClick={()=>handleClickOpen(recipe)} comments={recipe.comments} id={recipe.id} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
