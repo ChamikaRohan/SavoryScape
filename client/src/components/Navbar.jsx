@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from "../assets/Logo.png"
 
 const drawerWidth = 240;
-const navItems = ['Create', 'Explore', 'About'];
+const navItems = ['Create', 'Explore', 'Search'];
 
 export default function NavBar(props) {
   const navigate = useNavigate();
@@ -34,9 +34,12 @@ export default function NavBar(props) {
       case 'Logo':
         navigate("/");
         break;
-        case 'Explore':
-          navigate("/explorerecipes");
-          break;
+      case 'Explore':
+        navigate("/explorerecipes");
+        break;
+      case 'Search':
+        navigate("/searchrecipes");
+        break;
       default:
         console.log("break");
         break;

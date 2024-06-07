@@ -21,7 +21,7 @@ export default function HomePage() {
       </div>
       <div style={{display: "flex", flexDirection: "column", alignItems: "center",maxWidth: "890px" ,margin: "0 auto", padding: "0 20px"}}>
         <Hero />
-        <SolidSpace/><SolidSpace/>
+        <SolidSpace/>
         <SectionBreak/>
         <ExploreInviteSection/>
         <SectionBreak/>
