@@ -26,9 +26,9 @@
     height: 8px;
     background: linear-gradient(
       to right,
-      rgb(161, 94, 255),
-      rgb(217, 190, 255),
-      rgb(161, 94, 255)
+      black,
+      black,
+      black
     );
     background-size: 200% 100%;
     border-radius: 10px;
@@ -64,7 +64,7 @@
   }
   .svgIcon circle,
   line {
-    stroke: rgb(162, 55, 255);
+    stroke: darkcyan;
   }
   .svgIcon circle {
     fill: rgba(98, 65, 142, 0.238);
