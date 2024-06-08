@@ -37,7 +37,7 @@ export default function StylesSection() {
   return (
     <ThemeProvider theme={Theme}>
     <div className="categories-wrapper">
-      <div style={{ display: "flex", flexDirection:"row", justifyContent: "flex-end" }}>
+      <div style={{ display: "flex", flexDirection:"row", justifyContent: "center" }}>
         <Typography variant="h5" sx={{color: Theme.palette.primary.main, fontFamily: "Poppins Regular"}}> Food Styles</Typography>
       </div>
       <SolidSpace/>
