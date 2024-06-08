@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Grid, Typography } from '@mui/material';
-
 import Post from '../components/PostParts/Post.jsx';
 import Dialog from '@mui/material/Dialog';
 import ListItemText from '@mui/material/ListItemText';
@@ -12,6 +11,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
 
 const FeaturedContainer = styled.div`
   text-align: center;
@@ -131,7 +131,7 @@ const FeaturedRecipesSection = () => {
     <FeaturedContainer>
       <FeaturedTitle>Featured Recipes</FeaturedTitle>
       <FeaturedText>Discover our handpicked selection of this month's must-try recipes.</FeaturedText>
-      <Grid container style={{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+      <Grid container style={{display: "flex", flexDirection: "row", justifyContent: "center", gap: "30px"}}>
         {popularRecipes.map((recipe) => (
           <Post onClick={()=>handleClickOpen(recipe)} getrecipes={()=>getPopularRecipes()} comments={recipe.comments} id={recipe.id} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
         ))}
