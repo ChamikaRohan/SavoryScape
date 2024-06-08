@@ -21,4 +21,6 @@ public interface RecipeService {
     public String[] getComments(String id);
 
     public List<Recipe> searchRecipe(String name);
+
+    public List<Recipe> popularRecipes();
 }

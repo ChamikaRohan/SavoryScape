@@ -131,6 +131,21 @@ public class RecipeController {
             if(recipe.isEmpty()) {return ResponseEntity.status(500).body(null); }
             return ResponseEntity.ok(recipe);
         } catch (Exception e) {
+            e.fillInStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("popularrecipes")
+    public ResponseEntity<List<Recipe>> getpopularrecipe()
+    {
+        try{
+            List<Recipe> popularRecipes = recipeService.popularRecipes();
+            return ResponseEntity.ok(popularRecipes);
+        }
+        catch(Exception e)
+        {
+            e.fillInStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

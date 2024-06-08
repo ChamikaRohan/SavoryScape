@@ -1,5 +1,7 @@
 package com.server.server.services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,5 +76,52 @@ public class RecipeServiceImpl implements RecipeService {
     public List<Recipe> searchRecipe(String name)
     {
         return recipeRepo.findByNameContainingIgnoreCase(name);
+    }
+
+    public List<Recipe> popularRecipes()
+    {
+        List<Recipe> allrecipes = recipeRepo.findAll(); 
+        int max=0;
+        Recipe maxRecipe = null;
+        Recipe[] allrecipesarray = allrecipes.toArray(new Recipe[0]);
+        for(int i = 0; i < allrecipesarray.length; i++)
+        {
+            if( max <allrecipesarray[i].getComments().length)
+            {
+                max = allrecipesarray[i].getComments().length;
+                maxRecipe = allrecipesarray[i];
+            }
+        }
+
+        int secondMax=0;
+        Recipe secondMaxRecipe = null;
+
+        for(int i = 0; i < allrecipesarray.length; i++)
+        {
+            if( secondMax < allrecipesarray[i].getComments().length)
+            {
+                if( max >  allrecipesarray[i].getComments().length)
+                {
+                    secondMax = allrecipesarray[i].getComments().length;
+                    secondMaxRecipe = allrecipesarray[i];
+                }
+                else if (max == allrecipesarray[i].getComments().length)
+                {
+                    if (allrecipesarray[i].getId() != maxRecipe.getId())
+                    {
+                        secondMax = allrecipesarray[i].getComments().length;
+                        secondMaxRecipe = allrecipesarray[i];
+                    }
+                }
+            }
+        }
+        
+        List<Recipe> maxList = Arrays.asList(maxRecipe);
+        List<Recipe> secondMaxList = Arrays.asList(secondMaxRecipe);
+        List<Recipe> combinedList = new ArrayList<>();
+        combinedList.addAll(maxList);
+        combinedList.addAll(secondMaxList);
+
+        return combinedList;
     }
 }
