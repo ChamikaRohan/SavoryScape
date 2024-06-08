@@ -39,7 +39,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Post({onClick, id, name, style, description, image, comments }) {
+export default function Post({onClick, getrecipes, id, name, style, description, image, comments }) {
   const apiURL = import.meta.env.VITE_API_BASE_URL;
   const truncatedName = truncateContent(description, 100);
   const [expanded, setExpanded] = React.useState(false);
@@ -60,9 +60,7 @@ export default function Post({onClick, id, name, style, description, image, comm
       });
       const data = await response.json();
       toast.success('Comment added succesfully!',{duration: 1500});
-      setTimeout(()=>{
-        window.location.reload();
-    }, 1800);
+      getrecipes();
     }
     catch(error)
     {

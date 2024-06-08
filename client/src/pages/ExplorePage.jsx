@@ -99,7 +99,7 @@ export default function ExplorePage() {
         <Grid container style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
           {recipes.map((recipe)=>{
             return <Grid sx={{ marginBottom: "20px",display: "flex", alignItems: "flex-start", justifyContent: "center"  }} item xs={12} sm={6} md={4}>
-              <Post onClick={()=>handleClickOpen(recipe)} comments={recipe.comments} id={recipe.id} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
+              <Post onClick={()=>handleClickOpen(recipe)} getrecipes={()=>getrecipes()} comments={recipe.comments} id={recipe.id} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
             </Grid>
           })}
         </Grid>}
@@ -127,9 +127,6 @@ export default function ExplorePage() {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               {selectedRecipe ? selectedRecipe.name : ''}
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              Save
-            </Button>
           </Toolbar>
         </AppBar>
         <List>
@@ -152,7 +149,6 @@ export default function ExplorePage() {
             <ListItemButton sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
               <img style={{maxHeight: "400px"}} src={selectedRecipe ? selectedRecipe.imageUrl : ''} />
             </ListItemButton>
-          {/* Add more details as needed */}
         </List>
       </Dialog>
     </ThemeProvider>

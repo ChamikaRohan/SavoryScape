@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import Theme from '../utils/Theme.js';
 import SolidSpace from '../components/SolidSpace';
 import NavBar from '../components/Navbar';
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid, Divider, ListItemText, List } from '@mui/material';
 import SearchBar from '../components/SearchBar.jsx';
 import gifCooking from '../assets/Cooking.gif';
 import Footer from '../components/Footer.jsx';
 import Post from '../components/PostParts/Post.jsx';
+import React, { useEffect, useState } from 'react'
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import ListItemButton from '@mui/material/ListItemButton';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
+import "../components/UIVerseCss/ExplorePageButton.css"
 import "./SearchPage.css"
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function SearchPage() {
   const apiURL = import.meta.env.VITE_API_BASE_URL;
   const [searchthing, setSearchthing] = useState("");
   const [searchresult, setSearchresult] = useState([]);
   const [isloading, setIsloading] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [open, setOpen] = React.useState(false);
 
   const getRecipeImage = async (fileId) => {
     try {
@@ -121,7 +136,7 @@ export default function SearchPage() {
             {searchresult && searchresult.length > 0 ?
               searchresult.map((recipe) => (
                 <Grid key={recipe.id} sx={{ marginBottom: "20px", display: "flex", alignItems: "center", justifyContent: "center" }} item xs={12} sm={6} md={4}>
-                  <Post onClick={() => handleClickOpen(recipe)} comments={recipe.comments} id={recipe.id} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
+                  <Post onClick={() => handleClickOpen(recipe)} getrecipes={()=>handleSearch()} comments={recipe.comments} id={recipe.id} name={recipe.name} style={recipe.style} description={recipe.description} image={recipe.imageUrl} />
                 </Grid>
               )) :
               (
@@ -136,6 +151,49 @@ export default function SearchPage() {
         <SolidSpace />
         <Footer />
       </div>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              {selectedRecipe ? selectedRecipe.name : ''}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <List>
+            <ListItemButton>
+              <ListItemText primary="Type" secondary={<Typography sx={{color: "gray", fontSize: "14px"}} >{selectedRecipe ? selectedRecipe.style : '' } {selectedRecipe ? selectedRecipe.category : '' }</Typography>} />
+            </ListItemButton>
+          <Divider />
+            <ListItemButton>
+              <ListItemText primary="Description" secondary={selectedRecipe ? selectedRecipe.description : ''} />
+            </ListItemButton>
+          <Divider />
+            <ListItemButton>
+              <ListItemText primary="Ingrediants" secondary={selectedRecipe ? selectedRecipe.ingrediants : ''} />
+            </ListItemButton>
+          <Divider />
+            <ListItemButton>
+              <ListItemText primary="Recipe" secondary={selectedRecipe ? selectedRecipe.recipe : ''} />
+            </ListItemButton>
+          <Divider />
+            <ListItemButton sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+              <img style={{maxHeight: "400px"}} src={selectedRecipe ? selectedRecipe.imageUrl : ''} />
+            </ListItemButton>
+        </List>
+      </Dialog>
     </ThemeProvider>
   );
 }

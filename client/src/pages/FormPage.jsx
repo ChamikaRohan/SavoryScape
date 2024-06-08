@@ -100,9 +100,7 @@ export default function FormPage() {
         });
         const data = await response.json();
         toast.success('Recipe added succesfully!',{duration: 1500});
-        setTimeout(()=>{
-            window.location.reload();
-        }, 1800);
+        handleClear();
       }
       catch(error)
       {
@@ -110,6 +108,17 @@ export default function FormPage() {
         console.log(data.message);
       }
     }
+
+    const handleClear = () => {
+      setName("");
+      setCategory("Appetizers");
+      setStyle("Italian");
+      setDescription("");
+      setIngrediants("");
+      setRecipe("");
+      setSelectedimg("");
+      setImageId("");
+    };
 
   return (
     <ThemeProvider theme={Theme}>
